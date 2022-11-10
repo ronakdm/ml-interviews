@@ -29,4 +29,41 @@ $$
 
 ## Computing Functionals of the Distribution of a Random Variable
 
+Similarly, one may ask you to compute the expectation $E[X]$ or variance $V[X]$ of a random variable $X$. Some options are listed below.
+- While it is usually simpler to compute the expectation or variance, one can always compute the entire distribution of $X$ and then proceed by definition:
+$$
+E[X] = \int x f_X(x) dx, \quad V[X] = E[X^2] - E[X]^2
+$$
+- Use the law of total expectation:
+$$
+    E[X] = \int_{x \in \mathbb{R}}\int_{z \in \mathbb{R}} x f_{X, Z}(x, z)dzdx.
+$$
+- Use the law of iterated expectation:
+$$
+    E[X] = E[E[X | Z]].
+$$
+- Use the law of total variance:
+$$
+    V[X] = E[V[X|Z]] + V[E[X|Z]].
+$$
+- If $X = \sum_{i=1}^n X_i$ is a sum of random variables, letting $C[X_i, X_j]$ be the covariance of $X_i$ and $X_j$, use:
+$$
+    E[X] = \sum_{i=1}^n E[X_i], \quad V[X] = \sum_{i=1}^n \sum_{j=1}^n C[X_i, X_j].
+$$
+- If $X$ is a count of some quantity, write it as a sum of indicators $X = \sum_{i=1}^n 1\{A_i\}$ for events $A_1, \ldots, A_n$, so that:
+$$
+    E[X] = \sum_{i=1}^n E[1\{A_i\}] = \sum_{i=1}^n P(A_i). 
+$$
+
+**Example:** 8 students from JHU and 10 students from UW sit around a circular table with 18 seats, with uniformly randomly assigned seats. Each person will shake the hands of the person next to them if they are from different universities. What is the expected number of handshakes that occur around the table? What is the variance?
+
+
 ## Hypothesis Testing for Model Performance
+
+When dealing with accuracies, the performance of a model $h: \mathcal{X} \rightarrow \{0, 1\}$ on test set $(x_i, y_i), ..., (x_n, y_n)$ is written
+$$
+    \text{acc}(h) = \frac{1}{n} \sum_{i=1}^n 1\{h(x_i) = y_i\}
+$$
+for $x_i \in \mathcal{X}$ and $y_i \in \{0, 1\}$. Note that we have conditioned on any training data, and consider only the randomness in the test set. 
+As such, under the iid assumption on the test set, this is a Binomial proportion, with parameters $n$ and $p := P(h(x_1) = y_1)$. Various [confidence intervals](https://en.wikipedia.org/wiki/Binomial_proportion_confidence_interval) have been proposed for this type of statistic. When comparing two classifiers $h_1$ and $h_2$
+if using the same test set we turn to paired tests of differences between means, such as the paired [$t$-test](https://en.wikipedia.org/wiki/Student%27s_t-test) or the [Wilcoxon signed-rank test](https://en.wikipedia.org/wiki/Wilcoxon_signed-rank_test), as well as more modern statistical tools. When using $t$-tests, remember to include the discussion on approximate normality of the observed random variable.

@@ -12,6 +12,8 @@ These are "solved" at the end of this note.
 
 ## Approach
 
+This is my usual approach to structuring an answer.
+
 ### Problem Design
 
 1. Repeat the general (real-world) problem description back to the interviewer.
@@ -21,25 +23,23 @@ These are "solved" at the end of this note.
 
 ### Data Design
 
-1. Identify the input and label spaces very explicitly.
+1. Identify the input and label spaces explicitly.
 2. Determine how the training data is sampled/collected.
-3. Ask if there is a feature engineering step, in which case suggest feature relevant for the problem.
+3. Ask if there is a feature engineering step, in which case suggest features relevant for the problem.
 4. Ask if there are any privacy considerations that need to be taken into account.
 
 ### Modeling
 
-1. Present a set of models that range from simple to complex. If there are images or text, use pretrained networks (ResNet50, BERT, etc) to represent them as vectors, concatenate them with other numerical features for a combined representation. Then, apply linear or logistic regression to the output. In the simplest form, leave the encoders are frozen features and only solve the (convex) problem of learning the weights for the final layer. Then, add complexity by additionally adding one more layer to the head, or unfreezing the encoder weights and backpropagating through them. Note that you could also you a tree-based approach (see `tradeoffs.md`).
+1. Present a set of models that range from simple to complex. If there are images or text, use pretrained networks (ResNet50, BERT, more modern solutions, etc) to represent them as vectors, concatenate them with other numerical features for a combined representation. Then, apply linear or logistic regression to the output. In the simplest form, leave the encoders are frozen features and only solve the (convex) problem of learning the weights for the final layer. Then, add complexity by additionally adding one more layer to the head, or unfreezing the encoder weights and backpropagating through them. Note that you could also you a tree-based approach (see `tradeoffs.md`).
 2. Identify all hyperparameters on the table (architecture, optimizers, encoders, etc).
-3. Then, train the model and see if you successfully optimized the train loss. If not, options are to decrease the learning rate, or in some cases increase L2-regularization to make the function "more" strongly convex. 
-4. Once the model is optimized, assess the generalization gap by checkign validation loss. If there is one, make changes that aid generalization (i.e. regularization, model simplification). If there is no gap, but performance is not as good as it could be (discuss with your interviewer what this means), then increase model complexity.
-5. After training a good model, consider optimizing the threshold to achieve a good balance of precision and recall. Discuss any other trade-offs in general.
-
-2. At this point
+3. Then, train the model and see if you successfully optimized the train loss. If not, options are to decrease the learning rate, or in some cases increase L2-regularization to upweight the strongly convex portion of the objective function. If you cannot optimize, there is not much use in discussing downstream performance.
+4. Once the model is near-optimized, assess the generalization gap by checking validation loss. If there is one, make changes that aid generalization (i.e. regularization, model simplification). If there is no gap, but performance is not as good as it could be (discuss with your interviewer what this means), then increase model complexity.
+5. In classication, after training a good model, consider optimizing the threshold to achieve a good balance of precision and recall. Discuss any other trade-offs in general.
 
 ### Deployment and Pitfalls
 
-1. Consider deployment details, such as frequency of retraining, continuous updating, central vs federated setup.
-2. Mention issues of fairness, both in the abstract social sense and in the concrete technical sense.
+1. Consider deployment details, such as frequency of retraining, continuous updating, or centralized vs federated setup.
+2. Mention issues of fairness, both in the abstract social sense and in the concrete technical sense (see [Agarwal (2018)](https://icml.cc/Conferences/2018/Schedule?showEvent=2361) for examples).
 3. If not mentioned before, mention issues of class imbalance, which could cause a model selected based on accuracy perform badly at inference time.
 4. If not mentioned before, this would also be a good place to discuss privacy concerns.
-5. Most importantly, try to mention domain-specific pitfalls that can occur and need to be accounted for. 
+5. Most importantly, try to mention domain-specific pitfalls that can occur and need to be accounted for. For example, in Example 1 above, a Veteran's Day post might contain a firearm but not be selling it. Could this be a pitfall of the model, and can we correct for it?

@@ -1,6 +1,6 @@
 # Trade-offs
 
-There are innumerable cases in which an interviewer expects you to discuss a trade-off between two desirable properties. While there can be more than two, this is a less common setting in which many of these ideas can easily be adapted.
+Often, an interviewer expects you to discuss a trade-off between two desirable properties. While there can be more than two, this is a less common setting in which many of these ideas can easily be adapted.
 
 **What they are looking for:** The ability to recognize a that instead of a single solution, there is a space of feasible solutions, as well as ideas on how to navigate this space.
 
