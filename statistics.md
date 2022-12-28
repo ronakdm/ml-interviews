@@ -66,10 +66,10 @@ $$
 \mathbb{E}[X] = \sum_{i=1}^n \mathbb{E}[X_i], \quad \operatorname{Var}[X] = \sum_{i=1}^n \sum_{j=1}^n \operatorname{Cov}[X_i, X_j].
 $$
 
-- If $X$ is a count of some quantity, write it as a sum of indicators $X = \sum_{i=1}^n 1\{A_i\}$ for events $A_1, \ldots, A_n$, so that:
+- If $X$ is a count of some quantity, write it as a sum of indicators $X = \sum_{i=1}^n 1_{A_i}$ for events $A_1, \ldots, A_n$, so that:
 
 $$
-\mathbb{E}[X] = \sum_{i=1}^n \mathbb{E}[1\{A_i\}] = \sum_{i=1}^n P(A_i). 
+\mathbb{E}[X] = \sum_{i=1}^n \mathbb{E}[1_{A_i}] = \sum_{i=1}^n P(A_i). 
 $$
 
 **Example:** 8 students from JHU and 10 students from UW sit around a circular table with 18 seats, with uniformly randomly assigned seats. Each person will shake the hands of the person next to them if they are from different universities. What is the expected number of handshakes that occur around the table? What is the variance?
@@ -80,7 +80,7 @@ $$
 When dealing with accuracies, the performance of a classification model $h: \mathcal{X} \rightarrow \{0, 1\}$ on test set realizations $(x_i, y_i), ..., (x_n, y_n)$ is written
 
 $$
-    \operatorname{acc}(h) = \frac{1}{n} \sum_{i=1}^n 1\{h(x_i) = y_i\}
+    \operatorname{acc}(h) = \frac{1}{n} \sum_{i=1}^n 1_{\lbrace h(x_i) = y_i \rbrace}
 $$
 
 for $x_i \in \mathcal{X}$ and $y_i \in \{0, 1\}$. Note that we have conditioned on any training data, and consider only the randomness in the test set. 
