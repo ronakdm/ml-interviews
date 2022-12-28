@@ -51,7 +51,7 @@ $$
 - Use the law of iterated expectation:
 
 $$
-\mathbb{E}[X][X] = \mathbb{E}[X][\mathbb{E}[X | Z]].
+\mathbb{E}[X] = \mathbb{E}[\mathbb{E}[X | Z]].
 $$
 
 - Use the law of total variance:
@@ -60,13 +60,13 @@ $$
 \operatorname{Var}[X] = \mathbb{E}[\operatorname{Var}[X|Z]] + \operatorname{Var}[\mathbb{E}[X|Z]].
 $$
 
-- If $X = \sum_{i=1}^n X_i$ is a sum of random variables, letting $\operatorname{Cov}[X_i, X_j]$ be the covariance of $X_i$ and $X_j$, use:
+- If $\textstyle X = \sum_{i=1}^n X_i$ is a sum of random variables, letting $\operatorname{Cov}[X_i, X_j]$ be the covariance of $X_i$ and $X_j$, use:
 
 $$
 \mathbb{E}[X] = \sum_{i=1}^n \mathbb{E}[X_i], \quad \operatorname{Var}[X] = \sum_{i=1}^n \sum_{j=1}^n \operatorname{Cov}[X_i, X_j].
 $$
 
-- If $X$ is a count of some quantity, write it as a sum of indicators $X = \sum_{i=1}^n 1_{A_i}$ for events $A_1, \ldots, A_n$, so that:
+- If $X$ is a count of some quantity, write it as a sum of indicators $\textstyle X = \sum_{i=1}^n 1_{A_i}$ for events $A_1, \ldots, A_n$, so that:
 
 $$
 \mathbb{E}[X] = \sum_{i=1}^n \mathbb{E}[1_{A_i}] = \sum_{i=1}^n P(A_i). 
