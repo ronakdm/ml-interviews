@@ -1,5 +1,9 @@
 # Statistics Basics
 
+One interview format that appears in both technology and quantitative finance roles is a pure statistics interview, in which you are asked [Casella and Berger](https://books.google.com/books/about/Statistical_Inference.html?id=0x_vAAAAMAAJ) style textbook problems.
+
+**What they are looking for:** Knowledge of advanced undergraduate to Master's level mathematical statistics.
+
 ## Deriving the Distribution of a Random Variable
 
 A general question is describing the distribution of a random variable $X$.
